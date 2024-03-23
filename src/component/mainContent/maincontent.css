@@ -28,6 +28,9 @@
 .middle-content section {
   display: flex;
 }
+.middle-content section h3{
+  font-weight: 500;
+}
 .middle-content section .hide-container {
   margin-left: 70px;
   display: flex;
@@ -52,7 +55,7 @@
   display: flex;
   margin-top: 50px;
   margin-left: 40px;
-  justify-content: center;
+  /* justify-content: center; */
 }
 .customizable-container {
   width: 700px;
@@ -71,7 +74,7 @@
 .customizable-container span {
   display: inline-block;
   text-transform: uppercase;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 499;
 }
 .customizable-container section div {
@@ -80,7 +83,37 @@
 .customizable-container section div svg {
   margin-left: auto;
 }
+.loader {
+  text-align: center;
+  margin-top: 100px;
+  margin-left: 400px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  position: relative;
+  animation: rotate 1s linear infinite
+}
+.loader::before {
+  content: "";
+  box-sizing: border-box;
+  position: absolute;
+  inset: 0px;
+  border-radius: 50%;
+  border: 5px solid #FFF;
+  animation: prixClipFix 2s linear infinite ;
+}
 
+@keyframes rotate {
+  100%   {transform: rotate(360deg)}
+}
+
+@keyframes prixClipFix {
+    0%   {clip-path:polygon(50% 50%,0 0,0 0,0 0,0 0,0 0)}
+    25%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 0,100% 0,100% 0)}
+    50%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,100% 100%,100% 100%)}
+    75%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,0 100%,0 100%)}
+    100% {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,0 100%,0 0)}
+}
 .display-container {
   display: flex;
   flex-wrap: wrap;

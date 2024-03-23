@@ -8,15 +8,19 @@ const MainContent = () => {
   const [displayData, setDisplayData] = useState();
   const [productContainerVisible, setProductContainerVisible] = useState(true);
   const [filterText, setFilterText] = useState("HIDE FILTER");
-  
+  const [loading, setLoading] = useState(true);
+
   const fetchData = async () => {
     try {
+      setLoading(true);
       const res = await fetch(`https://fakestoreapi.com/products`);
       const data = await res.json();
       console.log(data);
       setDisplayData(data);
     } catch (err) {
       console.log(err);
+    } finally {
+      setLoading(false);
     }
   };
   useEffect(() => {
@@ -124,13 +128,17 @@ const MainContent = () => {
         )}
         <div className="display-container">
           {/* fetching data */}
-          {displayData &&
+          {loading ? (
+            <div className="loader">Loading...</div>
+          ) : (
+            displayData &&
             displayData.map((product, index) => (
               <div className="mini-product" key={index}>
                 <img src={product.image} />
                 <h6>{product.title}</h6>
               </div>
-            ))}
+            ))
+          )}
         </div>
       </div>
     </div>
